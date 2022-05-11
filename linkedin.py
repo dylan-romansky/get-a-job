@@ -82,22 +82,27 @@ def crawl_linkedin(url="https://www.linkedin.com/jobs/search/?f_E=1%2C2&f_JT=F%2
 		os.mkdir(str(date.today()))
 	os.chdir(str(date.today()))
 
-	options = Options()
-	options.headless = True
+	try:
+		options = Options()
+		options.headless = True
 #service_log_path has been depracted. I'll need to rewrite
 #the below soon
-	print('starting selenium driver')
-	driver = webdriver.Firefox(options=options, service_log_path='/dev/null')
-	driver.get(url)
-	print('got page')
-	res_list = driver.find_element(By.XPATH, "/html/body/div[1]/div/main/section[2]/ul")
-	listings = driver.find_elements(By.TAG_NAME, 'li')
-	print('got listings')
-	i = 1
-	for listing in listings:
-		for link in listing.find_elements(By.CLASS_NAME, 'base-card__full-link'):
-			get_job(link.get_attribute('href'), i)
-			i += 1
+		print('starting selenium driver')
+		driver = webdriver.Firefox(options=options, service_log_path='/dev/null')
+		driver.get(url)
+		print('got page')
+		res_list = driver.find_element(By.XPATH, "/html/body/div[1]/div/main/section[2]/ul")
+		listings = driver.find_elements(By.TAG_NAME, 'li')
+		print('got listings')
+		i = 1
+		for listing in listings:
+			for link in listing.find_elements(By.CLASS_NAME, 'base-card__full-link'):
+				get_job(link.get_attribute('href'), i)
+				i += 1
+	except:
+		print("error: no listings found")
+		os.chdir("..")
+		os.rmdir(str(date.today()))
 	driver.quit()
 
 if __name__ == '__main__':

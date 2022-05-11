@@ -7,11 +7,19 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import chrome_start
 import sys
+import os
 
 def user_input():
 	print('Filenames:')
 	return input().split(' ')
 
+if (len(sys.argv) < 2):
+	file_set = user_input()
+else:
+	file_set = sys.argv[1:]
+if not file_set or not file_set[0] or not os.path.exists(file_set[0]):
+	print("Error: files not present")
+	exit()
 caps = DesiredCapabilities.CHROME
 caps["pageLoadStrategy"] = "none"
 try:
@@ -23,10 +31,6 @@ except:
     #their browser and run the script againagain is the
 	#best solution I have
 	exit()
-if (len(sys.argv) < 2):
-	file_set = user_input()
-else:
-	file_set = sys.argv[1:]
 for file in file_set:
 	print("Opening: " + file)
 	driver.switch_to.new_window('tab')
