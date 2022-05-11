@@ -87,3 +87,9 @@ this requires you to not have a Google Chrome instance open
 at the time of running the script. I am going to start
 looking into how to connect to an already active browser
 session so that this is no longer an inconvenience.
+
+
+This script set makes extensive use of the modules in my
+python-user-modules repo, so if you're planning to use
+any part of this script, make sure you have that repo
+cloned and in your python path
