@@ -1,0 +1,37 @@
+linkedin.com/
+
+	jobs/
+	search/?
+
+#separate each experience option with %2C
+	f_E=1	#internship
+	f_E=2	#entry level
+	f_E=3	#associate
+	f_E=4	#mid senior level
+	f_E=5	#director
+	f_E=6	#executive
+
+#separate each of these with %2C
+	f_JT=F	#full-time
+	f_JT=P	#part-time
+	f_JT=C	#contract
+	f_JT=T	#Temp
+	f_JT=I	#internship
+	f_JT=O	#other
+
+#separate with %2C
+	f_WT=1	#on-site
+	f_WT=2	#remote
+	f_WT=3	#hybrid
+
+	f_TPR=r86400&keywords=		#past 24 hours
+	f_TPR=r604800&keywords=		#past week
+	f_TPR=r2592000&keywords=	#past month
+
+	keywords=param%20param%20param
+
+	location=city%2C%20state/province%2C%20country%20of%20choice
+
+	sortBy=DD	#sort by most recent
+
+e t w d l s 

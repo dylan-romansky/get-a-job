@@ -1,0 +1,3 @@
+Script throws an exception if no listings are found
+
+Sort output by search terms
