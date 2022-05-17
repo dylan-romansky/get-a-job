@@ -28,8 +28,8 @@ except:
 	print("Please close other browser windows and try again")
 	#until I figure out how to implement connecting to an
 	#active browser session, exiting and making the user close
-    #their browser and run the script againagain is the
-	#best solution I have
+    #their browser and run the script again is the best solution 
+	#I have
 	exit()
 for file in file_set:
 	print("Opening: " + file)
