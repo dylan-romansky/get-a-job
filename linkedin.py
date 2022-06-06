@@ -69,18 +69,23 @@ def get_job(link, i):
 
 #this function has a hardcoded default url in the event
 #that it's invoked directly instead of through get_a_job.py
-def crawl_linkedin(url="https://www.linkedin.com/jobs/search/?f_E=1%2C2&f_JT=F%2CP%2CI&f_TPR=r86400&geoId=102095887&keywords=sre&location=California%2C%20United%20States&sortBy=DD", sub='California'):
+def crawl_linkedin(url="https://www.linkedin.com/jobs/search/?f_E=1%2C2&f_JT=F%2CP%2CI&f_TPR=r86400&geoId=102095887&keywords=sre&location=California%2C%20United%20States&sortBy=DD", sub='California', key='sre'):
 	print(url)
 	print(sub)
+	print(key)
 	os.chdir(start_dir)
 	if os.path.exists(sub) == False:
 		os.mkdir(sub)
 	os.chdir(sub)
 	today = str(date.today())
 	#create the output directory for our results
+	if os.path.exists(key) == False:
+		os.mkdir(key)
+	os.chdir(key)
 	if os.path.exists(today) == False:
 		os.mkdir(str(date.today()))
 	os.chdir(str(date.today()))
+	print("PATH: " + os.getcwd())
 
 	try:
 		options = Options()
@@ -101,6 +106,8 @@ def crawl_linkedin(url="https://www.linkedin.com/jobs/search/?f_E=1%2C2&f_JT=F%2
 				i += 1
 	except:
 		print("error: no listings found")
+		os.chdir("..")
+		os.rmdir(key)
 		os.chdir("..")
 		os.rmdir(str(date.today()))
 	driver.quit()

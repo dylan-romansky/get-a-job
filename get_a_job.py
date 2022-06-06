@@ -47,8 +47,9 @@ if os.path.exists('linkedin') == False:
 
 #scrape for our listings, upload them to GDrive if desired
 subdir=args['location'].split(',')[0]
-linkedin.crawl_linkedin(linkedin.gen_url(args), subdir)
-ul_path=start_dir + 'output/linkedin/' + subdir + '/' + str(date.today())
+key = ' '.join(str(item) for item in args['keywords'])
+linkedin.crawl_linkedin(linkedin.gen_url(args), subdir, key)
+ul_path=start_dir + 'output/linkedin/' + subdir + '/' + '"' + key + '"/' + str(date.today())
 if args['no_upload'] == False and os.path.exists(ul_path):
     os.chdir(ul_path)
     drive_handling.drive_fill(drive.files().list(q='name = "linkedin"').execute(), drive, SUBDIR=subdir)
