@@ -17,7 +17,7 @@ if (len(sys.argv) < 2):
 	file_set = user_input()
 else:
 	file_set = sys.argv[1:]
-if not file_set or not file_set[0] or not os.path.exists(file_set[0]):
+if not file_set or not file_set[0]:
 	print("Error: files not present")
 	exit()
 caps = DesiredCapabilities.CHROME
@@ -32,7 +32,10 @@ except:
 	#I have
 	exit()
 for file in file_set:
-	print("Opening: " + file)
-	driver.switch_to.new_window('tab')
-	with open(file, 'r') as link:
-		driver.get(link.readline())
+	if (os.path.exists(file)):
+		print("Opening: " + file)
+		driver.switch_to.new_window('tab')
+		with open(file, 'r') as link:
+			driver.get(link.readline())
+	else:
+		print("File not found: " + file)
