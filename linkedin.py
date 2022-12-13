@@ -16,7 +16,7 @@ import re
 #	from whatever time frame I've specified. Default is 24
 #	hours
 
-start_dir = os.path.expandvars('$HOME/projects/Python/scraping/output/linkedin')
+start_dir = os.path.expandvars('$HOME/projects/Python/learning/scraping/output/linkedin')
 
 def str_gen(dic, arg, st):
 	nstr = st + str(dic[arg[0]])

@@ -38,7 +38,6 @@ print(args)
 
 #create our output directories if they don't exist
 os.chdir(start_dir)
-drive = drive_handling.drive_setup(SCOPES=SCOPE, token_dir=start_dir)
 if os.path.exists('output') == False:
 	os.mkdir('output')
 os.chdir('output')
@@ -51,5 +50,6 @@ key = ' '.join(str(item) for item in args['keywords'])
 linkedin.crawl_linkedin(linkedin.gen_url(args), subdir, key)
 ul_path=start_dir + 'output/linkedin/' + subdir + '/' + '"' + key + '"/' + str(date.today())
 if args['no_upload'] == False and os.path.exists(ul_path):
-    os.chdir(ul_path)
-    drive_handling.drive_fill(drive.files().list(q='name = "linkedin"').execute(), drive, SUBDIR=subdir)
+	drive = drive_handling.drive_setup(SCOPES=SCOPE, token_dir=start_dir)
+	os.chdir(ul_path)
+	drive_handling.drive_fill(drive.files().list(q='name = "linkedin"').execute(), drive, SUBDIR=subdir)
